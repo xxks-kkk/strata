@@ -55,8 +55,8 @@ const char test_dir_prefix[] = "/mlfs/";
 const char test_dir_prefix[] = "./t";
 #endif
 
-#define BUFFER_SIZE 10000
-char buffer[10000];
+#define BUFFER_SIZE 83740
+char buffer[BUFFER_SIZE];
 
 typedef enum {
     SEQ_WRITE,
@@ -120,7 +120,10 @@ bool writeFile(const std::string& filename, const std::string& verify_filename, 
     //PIDLOG() << "File opened with fd " << fd << std::endl;
     CHECK_FD(filename, fd);
     size_t filesize = filecontent.size();
-    size_t size = write(fd, filecontent.c_str(), filesize);
+    size_t size;
+    for(int j = 0; j < 10; ++j) {
+        size = write(fd, filecontent.c_str(), filesize);
+    }
     close(fd);
     PIDLOG() << "writeFile " << filename << " finished with " << size << " written." << std::endl;
     return errno == expection;
@@ -139,7 +142,10 @@ bool readFile(const std::string& filename, const std::string& verify_filename, i
     memset(buffer, 0, BUFFER_SIZE);
     size_t filesize = filecontent.size();
     //PIDLOG() << "Trying to read from fd" << std::endl;
-    size_t size = read(fd, buffer, filesize);
+    size_t size;
+    for(int j = 0; j < 10; ++j) {
+        size = read(fd, buffer, filesize);
+    }
     close(fd);
     PIDLOG() << "readFile " << filename << " finished with " << size << " read." << std::endl;
     if (memcmp(filecontent.c_str(), buffer, filesize)) {

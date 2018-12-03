@@ -1,0 +1,40 @@
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+PID: 20809 CMD0: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log0
+PID: 20810 CMD1: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log1
+PID: 20811 CMD2: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log2
+PID: 20812 CMD3: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log3
+PID: 20813 CMD4: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log4
+PID: 20815 CMD6: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log6
+PID: 20814 CMD5: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log5
+PID: 20816 CMD7: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log7
+PID: 20817 CMD8: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log8
+PID: 20818 CMD9: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log9
+Child with PID 20810 	 status 0 	 time: 540447 us
+Finished 1
+Child with PID 20812 	 status 0 	 time: 586937 us
+Finished 2
+Child with PID 20813 	 status 0 	 time: 622751 us
+Finished 3
+Child with PID 20809 	 status 0 	 time: 696598 us
+Finished 4
+Child with PID 20816 	 status 0 	 time: 719414 us
+Finished 5
+Child with PID 20817 	 status 0 	 time: 749138 us
+Finished 6
+Child with PID 20815 	 status 0 	 time: 749147 us
+Finished 7
+Child with PID 20814 	 status 0 	 time: 752802 us
+Finished 8
+Child with PID 20818 	 status 0 	 time: 778781 us
+Finished 9
+Child with PID 20811 	 status 0 	 time: 805786 us
+Finished 10

@@ -43,12 +43,15 @@ using namespace std;
 long int
 calculate_time(struct timeval* t_before, struct timeval* t_after)
 {
-    if (t_after->tv_usec < t_before->tv_usec)
-    {
-        t_after->tv_usec += 1000000;
-        t_after->tv_sec -= 1;
-    }
-    return (t_after->tv_sec - t_before->tv_sec)*1000000 + (t_after->tv_usec - t_before->tv_usec);
+    // if (t_after->tv_usec < t_before->tv_usec)
+    // {
+    //     t_after->tv_usec += 1000000;
+    //     t_after->tv_sec -= 1;
+    // }
+    // return (t_after->tv_sec - t_before->tv_sec)*1000000 + (t_after->tv_usec - t_before->tv_usec);
+  struct timeval res;
+  timersub(t_after, t_before, &res);
+  return res.tv_sec * 1000000 + res.tv_usec;
 }
 
 int
@@ -109,12 +112,12 @@ main(int argc, char **argv)
         else if (pids[i] == 0)
         {
             // child process
-            printf("[son] pid %d from [parent] pid %d\n", getpid(), getppid());
+            //printf("[son] pid %d from [parent] pid %d\n", getpid(), getppid());
             table[getpid()] = i;
             //DoWrite(filename.c_str());
             cmd = cmds[i] + " > /tmp/log" + to_string(i);
-            cmd = string("bash -c ") + "\"" + cmd + "\"";
-            cout << "CMD" + to_string(i) + ": " + cmd << endl;
+            //cmd = string("bash -c ") + "\"" + cmd + "\"";
+            cout << "PID: " << getpid() << " " << "CMD" + to_string(i) + ": " + cmd << endl;
             //system(cmd.c_str());
             execl("/bin/sh", "sh", "-c", cmd.c_str(), (char *) 0);
             exit(0);
@@ -129,6 +132,7 @@ main(int argc, char **argv)
     /* Wait for children to exit. */
     int status;
     pid_t pid;
+    int counter = 0;
     while (numProcesses > 0)
     {
         pid = wait(&status);
@@ -138,6 +142,8 @@ main(int argc, char **argv)
                status,
                calculate_time(time[table[pid]].first, time[table[pid]].second));
         --numProcesses;  // TODO(pts): Remove pid from the pids array.
+        counter++;
+        printf("Finished %d\n", counter);
     }
 
     return 0;

@@ -1,0 +1,44 @@
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: 
+PID: 20765 CMD0: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log0
+PID: 20766 CMD1: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log1
+PID: 20767 CMD2: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log2
+PID: 20768 CMD3: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log3
+PID: 20769 CMD4: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log4
+PID: 20770 CMD5: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log5
+PID: 20771 CMD6: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log6
+PID: 20772 CMD7: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log7
+PID: 20775 CMD10:  > /tmp/log10
+PID: 20773 CMD8: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log8
+PID: 20774 CMD9: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log9
+Child with PID 20775 	 status 0 	 time: 1170 us
+Finished 1
+Child with PID 20766 	 status 0 	 time: 559138 us
+Finished 2
+Child with PID 20768 	 status 0 	 time: 581719 us
+Finished 3
+Child with PID 20769 	 status 0 	 time: 584647 us
+Finished 4
+Child with PID 20767 	 status 0 	 time: 623810 us
+Finished 5
+Child with PID 20770 	 status 0 	 time: 642371 us
+Finished 6
+Child with PID 20771 	 status 0 	 time: 655959 us
+Finished 7
+Child with PID 20765 	 status 0 	 time: 657425 us
+Finished 8
+Child with PID 20772 	 status 0 	 time: 727535 us
+Finished 9
+Child with PID 20774 	 status 0 	 time: 735784 us
+Finished 10
+Child with PID 20773 	 status 0 	 time: 750581 us
+Finished 11

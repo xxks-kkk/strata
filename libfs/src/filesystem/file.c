@@ -148,7 +148,7 @@ ssize_t mlfs_file_read(struct file* f, uint8_t* buf, size_t n)
         // TODO: we revoke lease when
         // 1. the timeout or
         // 2. there is a write lease request pending
-        mlfs_info("Before readi: %c\n", ' ');
+        //mlfs_info("Before readi: %c\n", ' ');
         r = readi(f->ip, buf, f->off, n);
 
         if (r < 0)
@@ -360,8 +360,8 @@ struct inode* mlfs_object_create(char* path, unsigned short type)
     char name[DIRSIZ];
     uint64_t tsc_begin, tsc_end;
 
-    mlfs_info("Enter mlfs_object_create %c\n", ' ');
-    fflush(stdout);
+    /* mlfs_info("Enter mlfs_object_create %c\n", ' '); */
+    /* fflush(stdout); */
     /* this sets value of name */
     if ((parent_inode = nameiparent(path, name)) == 0)
     {
@@ -382,8 +382,8 @@ struct inode* mlfs_object_create(char* path, unsigned short type)
 
             mlfs_get_time(&inode->ctime);
             inode->atime = inode->mtime = inode->ctime;
-            mlfs_info("mlfs_object_create %p\n", inode);
-            mlfs_info("mlfs_object_create %d\n", inode->inum);            
+            /* mlfs_info("mlfs_object_create %p\n", inode); */
+            /* mlfs_info("mlfs_object_create %d\n", inode->inum);             */
             return inode;
         }
     }

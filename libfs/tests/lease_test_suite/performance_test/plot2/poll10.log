@@ -1,0 +1,40 @@
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p1.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+line: ./run.sh lease_test lease_test_suite/test1/p2.ini
+PID: 25051 CMD0: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log0
+PID: 25052 CMD1: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log1
+PID: 25053 CMD2: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log2
+PID: 25054 CMD3: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log3
+PID: 25055 CMD4: ./run.sh lease_test lease_test_suite/test1/p1.ini > /tmp/log4
+PID: 25057 CMD6: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log6
+PID: 25056 CMD5: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log5
+PID: 25058 CMD7: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log7
+PID: 25059 CMD8: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log8
+PID: 25060 CMD9: ./run.sh lease_test lease_test_suite/test1/p2.ini > /tmp/log9
+Child with PID 25056 	 status 0 	 time: 78537 us
+Finished 1
+Child with PID 25060 	 status 0 	 time: 79435 us
+Finished 2
+Child with PID 25051 	 status 0 	 time: 88617 us
+Finished 3
+Child with PID 25054 	 status 0 	 time: 93137 us
+Finished 4
+Child with PID 25058 	 status 0 	 time: 93559 us
+Finished 5
+Child with PID 25057 	 status 0 	 time: 97552 us
+Finished 6
+Child with PID 25053 	 status 0 	 time: 101379 us
+Finished 7
+Child with PID 25052 	 status 0 	 time: 108029 us
+Finished 8
+Child with PID 25055 	 status 0 	 time: 111414 us
+Finished 9
+Child with PID 25059 	 status 0 	 time: 121592 us
+Finished 10

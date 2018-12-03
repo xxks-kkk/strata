@@ -1157,7 +1157,7 @@ int do_unaligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_
 
 	// NVM case: no read caching.
 	if (bmap_req.dev == g_root_dev) {
-              mlfs_info("Enter NVM case %c\n", '1');
+              /* mlfs_info("Enter NVM case %c\n", '1'); */
 		bh->b_offset = off - off_aligned;
 		bh->b_data = dst;
 		bh->b_size = io_size;
@@ -1167,7 +1167,7 @@ int do_unaligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_
 	} 
 	// SSD and HDD cache: do read caching.
 	else {
-                        mlfs_info("Enter NVM case %c\n", '2');
+                        /* mlfs_info("Enter NVM case %c\n", '2'); */
 		mlfs_assert(_fcache_block == NULL);
 
 #if 0
@@ -1375,7 +1375,7 @@ do_global_search:
 
 	// NVM case: no read caching.
 	if (bmap_req.dev == g_root_dev) {
-              mlfs_info("Enter NVM case %c\n", '3');          
+              /* mlfs_info("Enter NVM case %c\n", '3');           */
 		bh = bh_get_sync_IO(bmap_req.dev, bmap_req.block_no, BH_NO_DATA_ALLOC);
 		bh->b_size = (bmap_req.blk_count_found << g_block_size_shift);
 		bh->b_offset = 0;
@@ -1386,7 +1386,7 @@ do_global_search:
 	} 
 	// SSD and HDD cache: do read caching.
 	else {
-                        mlfs_info("Enter NVM case %c\n", '4');          
+                        /* mlfs_info("Enter NVM case %c\n", '4');           */
 		offset_t cur, l;
 
 #if 0

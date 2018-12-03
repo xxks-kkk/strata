@@ -129,11 +129,13 @@ void shutdown_log(void)
 	// wait until the digest_thead finishes job.
 	if (g_fs_log->digesting) {
 		mlfs_info("%s", "[L] Wait finishing on-going digest\n");
+                fflush(stdout);
 		wait_on_digesting();
 	}
 
 	if (atomic_load(&g_fs_log->log_sb->n_digest)) {
 		mlfs_info("%s", "[L] Digesting remaining log data\n");
+                fflush(stdout);
 		while(make_digest_request_async(100) != -EBUSY);
 		m_barrier();
 		wait_on_digesting();
@@ -1014,6 +1016,7 @@ uint32_t make_digest_request_sync(int percent)
 			g_fs_log->dev, g_fs_log->n_digest_req, g_log_sb->start_digest, 0UL);
 
 	mlfs_info("%s\n", cmd);
+        fflush(stdout);
 
 	// send digest command
 	ret = sendto(g_sock_fd, cmd, MAX_SOCK_BUF, 0, 

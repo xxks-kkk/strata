@@ -64,8 +64,8 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
   inode_t type;
   int lease_ret;
 
-  mlfs_info("start_log_tx() %c\n", ' ');
-  fflush(stdout);  
+  /* mlfs_info("start_log_tx() %c\n", ' '); */
+  /* fflush(stdout);   */
   start_log_tx();
 
   if (flags & O_CREAT)
@@ -89,8 +89,8 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
 
     inode = mlfs_object_create(path, T_FILE);
                 
-    mlfs_info("create file %s - inum %u\n", path, inode->inum);
-    fflush(stdout);
+    /* mlfs_info("create file %s - inum %u\n", path, inode->inum); */
+    /* fflush(stdout); */
 
     if (!inode) {
       commit_log_tx();
@@ -177,8 +177,8 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
 
   fd = f->fd;
 
-  mlfs_info("open file %s inum %u fd %d\n", path, inode->inum, fd);
-  fflush(stdout);
+  /* mlfs_info("open file %s inum %u fd %d\n", path, inode->inum, fd); */
+  /* fflush(stdout); */
   commit_log_tx();
 
   pthread_rwlock_wrlock(&f->rwlock);

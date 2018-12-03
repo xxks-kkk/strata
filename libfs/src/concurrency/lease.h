@@ -17,7 +17,7 @@
 #define MLFS_LEASE_ERR -1              /* Indicates we hit the error case we try to acquire lease */ 
 #define MLFS_LEASE_GIVE_UP 1           /* Indicates we are failed to renewal lease (i.e., at one point, we give up the lease before reacquire) */
 #define MLFS_LEASE_OK 0                /* Nothing happens during the renewal */
-#define MLFS_LEASE_POLL_TIME 50000     /* Determine the polling speed for trying to acquire lease again (us). Determined empirically */
+#define MLFS_LEASE_POLL_TIME 10000     /* Determine the polling speed for trying to acquire lease again (us). Determined empirically */
 
 // lease_client
 #define data_size 4102

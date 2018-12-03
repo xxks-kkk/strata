@@ -142,7 +142,7 @@ void mlfs_release_lease_inum(uint32_t inum, file_operation_t operation,
 
 int Acquire_lease(const char *path, mlfs_time_t *expiration_time,
                   file_operation_t operation, inode_t type) {
-  mlfs_info("Enter Acquire_lease: %c\n", ' ');
+  //mlfs_info("Enter Acquire_lease: %c\n", ' ');
   fflush(stdout);
   int ret = MLFS_LEASE_OK;
   mlfs_time_t current_time;
@@ -152,34 +152,40 @@ int Acquire_lease(const char *path, mlfs_time_t *expiration_time,
       ((*expiration_time).tv_sec == 0 && (*expiration_time).tv_usec == 0)) {
     // Acquire lease if it is time to renewal or it is our first time to try to
     // get a lease
-    mlfs_info("Inside if of Acquire_lease: %c\n", ' ');
+    //mlfs_info("Inside if of Acquire_lease: %c\n", ' ');
     fflush(stdout);
     do {
       *expiration_time = mlfs_acquire_lease(path, operation, type);
-      mlfs_info("Inside if of Acquire_lease: %c\n", '2');
-      fflush(stdout);
+      //mlfs_info("Inside if of Acquire_lease: %c\n", '2');
+      //fflush(stdout);
 
       if ((*expiration_time).tv_sec == 0 && (*expiration_time).tv_usec == 0) {
         // This means we hit the error
         make_digest_request_sync(MLFS_LEASE_PERCENT);
-        mlfs_info("Inside if of Acquire_lease: %c\n", '3');
-        fflush(stdout);        
+        /* mlfs_info("Inside if of Acquire_lease: %c\n", '3'); */
+        /* fflush(stdout);         */
+#ifdef LEASE_PERFORMANCE_TEST
+        // For performance test (throughput), we don't care whether the read can
+        // cause error
+        ret = MLFS_LEASE_OK;
+#else
         ret = MLFS_LEASE_ERR;
+#endif        
       }
 
       if ((*expiration_time).tv_sec < 0) {
-        mlfs_info("Inside if of Acquire_lease: %c\n", '4');
-        fflush(stdout);                
+        /* mlfs_info("Inside if of Acquire_lease: %c\n", '4'); */
+        /* fflush(stdout);                 */
         ret = MLFS_LEASE_GIVE_UP;
         mlfs_time_t tmp, tmp2;
-        mlfs_get_time(&tmp);
-        mlfs_info("before sleep: %d s \t %ld us\n", tmp.tv_sec, tmp.tv_usec);
-        fflush(stdout);
+        /* mlfs_get_time(&tmp); */
+        /* mlfs_info("before sleep: %d s \t %ld us\n", tmp.tv_sec, tmp.tv_usec); */
+        /* fflush(stdout); */
         lease_sleep(*expiration_time);
         mlfs_get_time(&tmp2);
-        mlfs_info("after sleep: %d s \t %ld\n", tmp2.tv_sec, tmp2.tv_usec);        
-        mlfs_info("Acquire_lease wakeup from sleep %c\n", '1');
-        fflush(stdout);
+        /* mlfs_info("after sleep: %d s \t %ld\n", tmp2.tv_sec, tmp2.tv_usec);         */
+        /* mlfs_info("Acquire_lease wakeup from sleep %c\n", '1'); */
+        /* fflush(stdout); */
       }
     } while ((*expiration_time).tv_sec < 0);
   }
@@ -190,8 +196,8 @@ int Acquire_lease(const char *path, mlfs_time_t *expiration_time,
     // me file before. We have acquired the read lease now. We will request
     // digest so that our read lease can read the latest file change done
     // by some other process.
-    mlfs_info("Inside if of Acquire_lease: %c\n", '5');
-    fflush(stdout);            
+    /* mlfs_info("Inside if of Acquire_lease: %c\n", '5'); */
+    /* fflush(stdout);             */
     make_digest_request_sync(MLFS_LEASE_PERCENT);
   }
 
@@ -220,7 +226,7 @@ int Acquire_lease_inum(uint32_t inum, mlfs_time_t *expiration_time,
       ((*expiration_time).tv_sec == 0 && (*expiration_time).tv_usec == 0)) {
     // Acquire lease if it is time to renewal or it is our first time to try to
     // get a lease
-    mlfs_info("Inside if of Acquire_lease_inum: %c\n", ' ');
+    //mlfs_info("Inside if of Acquire_lease_inum: %c\n", ' ');
     do {
       *expiration_time = mlfs_acquire_lease(s->path, operation, type);
 
@@ -228,20 +234,26 @@ int Acquire_lease_inum(uint32_t inum, mlfs_time_t *expiration_time,
         // This means we hit the error (file re-created or deleted). However,
         // we want to bring the file status to the latest
         make_digest_request_sync(MLFS_LEASE_PERCENT);
+#ifdef LEASE_PERFORMANCE_TEST
+        // For performance test (throughput), we don't care whether the read can
+        // cause error
+        ret = MLFS_LEASE_OK;
+#else
         ret = MLFS_LEASE_ERR;
+#endif        
       }
 
       if ((*expiration_time).tv_sec < 0) {
         ret = MLFS_LEASE_GIVE_UP;
         mlfs_time_t tmp, tmp2;
         mlfs_get_time(&tmp);
-        mlfs_info("before sleep: %ld\n", tmp.tv_usec);
-        fflush(stdout);
+        /* mlfs_info("before sleep: %ld\n", tmp.tv_usec); */
+        /* fflush(stdout); */
         lease_sleep(*expiration_time);
         mlfs_get_time(&tmp2);
-        mlfs_info("after sleep: %ld\n", tmp2.tv_usec);
-        mlfs_info("Acquire_lease_inum wakeup from sleep %c\n", '1');
-        fflush(stdout);              
+        /* mlfs_info("after sleep: %ld\n", tmp2.tv_usec); */
+        /* mlfs_info("Acquire_lease_inum wakeup from sleep %c\n", '1'); */
+        /* fflush(stdout);               */
       }
     } while ((*expiration_time).tv_sec < 0);
   }
