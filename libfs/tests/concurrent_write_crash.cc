@@ -1,12 +1,11 @@
 /*************************************************************************
   > File Name:       concurrent_write_crash.cc
-  > Author:          Zeyuan Hu
+  > Author:          Zeyuan Hu, Jianwei Chen
   > Mail:            ferrishu3886@gmail.com
   > Created Time:    11/10/18
   > Description:
     
-    This benchmark simulate the case when one of the processes that writing to
-    the file is crashed while holding the lease.
+    The main driver program for lease support test
  ************************************************************************/
 
 #include <cassert>
