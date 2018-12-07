@@ -124,9 +124,7 @@ void release_write_lease(mlfs_lease_t *lease)
 
 mlfs_time_t lease_acquire(const char *path, file_operation_t operation, inode_t type, pid_t client)
 {
-   // mlfs_info("Try to lock%c\n", ' ');
     mlfs_mutex_lock(&lease_lock);
-    // mlfs_info("Lock successfully%c\n", ' ');
     mlfs_lease_t *lease = get_or_create_lease(path);
     mlfs_time_t ret;
     path_stat_t forbidden_stat;
@@ -140,9 +138,7 @@ case mlfs_read_op:
         break;
     case mlfs_write_op:
         // client can always write to a file
-        // mlfs_info("Try to unlock%c\n", ' ');
         mlfs_mutex_unlock(&lease_lock);
-        // mlfs_info("Unlock successfully%c\n", ' ');
         return acquire_write_lease(lease);
         break;
     case mlfs_create_op:
@@ -151,9 +147,7 @@ case mlfs_read_op:
         // if the file type is directory we should check if there are files created by other
         // process that they are unaware of
         if (type == T_DIR && has_undeleted_subdir(lease)) {
-            //mlfs_info("Try to unlock%c\n", ' ');
             mlfs_mutex_unlock(&lease_lock);
-            //mlfs_info("Unlock successfully%c\n", ' ');
             return lease_error;
         }
         if (lease->last_op_client != client && lease->last_op_stat == forbidden_stat)
@@ -165,16 +159,12 @@ case mlfs_read_op:
         ret = lease_error;
         break;
     }
-    // mlfs_info("Try to unlock%c\n", ' ');
     mlfs_mutex_unlock(&lease_lock);
-    // mlfs_info("Unlock successfully%c\n", ' ');
     return ret;
 }
 void lease_release(const char *path, file_operation_t operation, inode_t type, pid_t client)
 {
-    // mlfs_info("Try to lock%c\n", ' ');
     mlfs_mutex_lock(&lease_lock);
-    // mlfs_info("Lock successfully%c\n", ' ');
     mlfs_lease_t *lease;
     lease = get_lease(path);
     if (lease == NULL)
@@ -183,9 +173,7 @@ void lease_release(const char *path, file_operation_t operation, inode_t type, p
         // check that the client must have acquired the lease before
         assert(false);
 #endif
-        // mlfs_info("Try to unlock%c\n", ' ');
         mlfs_mutex_unlock(&lease_lock);
-        // mlfs_info("Unlock successfully%c\n", ' ');
         return;
     }
     switch (operation)
@@ -209,7 +197,5 @@ void lease_release(const char *path, file_operation_t operation, inode_t type, p
     default:
         break;
     }
-    // mlfs_info("Try to unlock%c\n", ' ');
     mlfs_mutex_unlock(&lease_lock);
-    // mlfs_info("Unlock sucessfully%c\n", ' ');
 }
