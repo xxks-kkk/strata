@@ -83,7 +83,7 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
     if (lease_ret == MLFS_LEASE_ERR)
     {
       mlfs_info("File is re-created or deleted by other processes%c", ' ');
-      fflush(stdout);      
+      make_digest_request_sync(MLFS_LEASE_PERCENT);                      
       return lease_ret;
     }
 
@@ -117,7 +117,7 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
       lease_ret = Acquire_lease(path, &expiration_time, operation, type);
       if (lease_ret == MLFS_LEASE_ERR) {
         mlfs_info("File is re-created or deleted by other processes%c", ' ');
-        fflush(stdout);        
+        make_digest_request_sync(MLFS_LEASE_PERCENT);                  
         return lease_ret;
       }          
     }
@@ -129,7 +129,7 @@ int mlfs_posix_open(char *path, int flags, uint16_t mode)
       lease_ret = Acquire_lease(path, &expiration_time, operation, type);
       if (lease_ret == MLFS_LEASE_ERR) {
         mlfs_info("File is re-created or deleted by other processes%c", ' ');
-        fflush(stdout);        
+        make_digest_request_sync(MLFS_LEASE_PERCENT);          
         return lease_ret;
       }
     }
@@ -499,7 +499,7 @@ int mlfs_posix_unlink(const char *filename)
     if (lease_ret == MLFS_LEASE_ERR)
     {
       mlfs_info("File is re-created or deleted by other processes%c", ' ');
-      fflush(stdout);      
+      make_digest_request_sync(MLFS_LEASE_PERCENT);                
       return lease_ret;
     }
 

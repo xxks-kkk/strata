@@ -236,6 +236,7 @@ int mlfs_file_write(struct file* f, uint8_t* buf, size_t n)
             T_FILE);
         if (lease_ret == MLFS_LEASE_ERR) {
             mlfs_info("File is re-created or deleted by other processes%c", ' ');
+            make_digest_request_sync(MLFS_LEASE_PERCENT);
             return -ENOENT;
         }
 

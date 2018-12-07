@@ -2,7 +2,7 @@ CC = gcc -std=c99
 #CC = c99
 
 
-EXE = iotest file_basic small_io falloc_test ftrunc_test lock_test lock_perf simple_spdk_test dir_test many_files_test fork_io readdir_test append_test fwrite_fread partial_update_test timer_api lease_test concurrent_write_crash
+EXE = iotest file_basic small_io falloc_test ftrunc_test lock_test lock_perf simple_spdk_test dir_test many_files_test fork_io readdir_test append_test fwrite_fread partial_update_test timer_api lease_test lease_test_driver
 #$(info $(EXE))
 
 CUR_DIR = $(shell pwd)
@@ -110,7 +110,7 @@ lease_test: lease_test.cc
 timer_api: timer_api.c
 	$(CC) -o $@ $^
 
-concurrent_write_crash: concurrent_write_crash.cc
+lease_test_driver: lease_test_driver.cc
 	$(CXX) -std=c++11 -g -o $@ $^  -I$(INCLUDES) $(CFLAGS) $(LDFLAGS) 
 
 clean:

@@ -3,7 +3,7 @@ Enhance Strata with Lease
 
 Follow the [Strata instruction](https://github.com/ut-osa/strata) to setup Strata.
 
-The test program for Lease support is `libfs/tests/concurrent_write_crash.cc`. It 
+The test program for Lease support is `libfs/tests/lease_test_driver.cc`. It 
 will invoke `lease_test`, which is compiled from `libfs/tests/lease_test.cc`. 
 
 The test suite is located under `libfs/tests/lease_test_suite/`. The instruction

@@ -1091,6 +1091,7 @@ int do_unaligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_
   if (lease_ret == MLFS_LEASE_ERR)
   {
     mlfs_info("File is re-created or deleted by other processes%c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);
     return -ENOENT;
   }
   if (lease_ret == MLFS_LEASE_GIVE_UP)
@@ -1146,6 +1147,7 @@ int do_unaligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_
   if (lease_ret == MLFS_LEASE_ERR)
   {
     mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);
     return -ENOENT;
   }
 
@@ -1204,6 +1206,7 @@ int do_unaligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_
   if (lease_ret == MLFS_LEASE_ERR)
   {
     mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);
     return -ENOENT;
   }
 
@@ -1277,7 +1280,8 @@ int do_aligned_read(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_si
     lease_ret = Acquire_lease_inum(ip->inum, expiration_time, mlfs_read_op, T_FILE);
     if (lease_ret == MLFS_LEASE_ERR)
     {
-      panic("File is re-created or deleted by other processes");
+      mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+      make_digest_request_sync(MLFS_LEASE_PERCENT);
       return -ENOENT;
     }
     if (lease_ret == MLFS_LEASE_GIVE_UP)
@@ -1349,7 +1353,8 @@ do_global_search:
   lease_ret = Acquire_lease_inum(ip->inum, expiration_time, mlfs_read_op, T_FILE);
   if (lease_ret == MLFS_LEASE_ERR)
   {
-      panic("File is re-created or deleted by other processes");
+      mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+      make_digest_request_sync(MLFS_LEASE_PERCENT);      
       return -ENOENT;
   }
 
@@ -1427,7 +1432,8 @@ do_global_search:
   lease_ret = Acquire_lease_inum(ip->inum, expiration_time, mlfs_read_op, T_FILE);
   if (lease_ret == MLFS_LEASE_ERR)
   {
-    panic("File is re-created or deleted by other processes");
+    mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);          
     return -ENOENT;
   }
 
@@ -1472,7 +1478,8 @@ do_io_aligned:
   lease_ret = Acquire_lease_inum(ip->inum, expiration_time, mlfs_read_op, T_FILE);
   if (lease_ret == MLFS_LEASE_ERR)
   {
-    panic("File is re-created or deleted by other processes");
+    mlfs_info("File is re-created or deleted by other processes %c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);          
     return -ENOENT;
   }
 
@@ -1528,6 +1535,7 @@ int readi(struct inode *ip, uint8_t *dst, offset_t off, uint32_t io_size)
   if (lease_ret == MLFS_LEASE_ERR)
   {
     mlfs_info("File is re-created or deleted by other processes%c\n", ' ');
+    make_digest_request_sync(MLFS_LEASE_PERCENT);          
     return -ENOENT;
   }
 
