@@ -1,6 +1,12 @@
 Enhance Strata with Lease
 ==================================
 
+## Overview
+
+In Strata paper, a lease mechnaism is described to facilitate file sharing across processes. However, it turns out that current Strata implementation does not have lease (researchers did do some experiments with file sharing across processes though). So, this project is to fill in the gap. A side effect of this project is that with lease, Strata has some basic infrastructure to become a distributed file system like NFS.
+
+## Setup
+
 Follow the [Strata instruction](https://github.com/ut-osa/strata) to setup Strata.
 
 The test program for Lease support is `libfs/tests/lease_test_driver.cc`. It 
