@@ -21,4 +21,3 @@ a 100M file and named it as `f100M`:
 ```
 dd if=/dev/urandom of=f100M bs=1048576 count=100
 ```
-m
