@@ -3,7 +3,7 @@ Enhance Strata with Lease
 
 ## Overview
 
-In Strata paper, a lease mechnaism is described to facilitate file sharing across processes. However, it turns out that current Strata implementation does not have lease (researchers did do some experiments with file sharing across processes though). So, this project is to fill in the gap. A side effect of this project is that with lease, Strata has some basic infrastructure to become a distributed file system like NFS.
+In Strata paper, a lease mechnaism is described to facilitate file sharing across processes. However, it turns out that current Strata implementation does not have lease (researchers did do some experiments with file sharing across processes though). So, this project is to fill the gap. A side effect of this project is that with lease, Strata has some basic infrastructure to become a distributed file system like NFS.
 
 ## Setup
 
@@ -21,3 +21,4 @@ a 100M file and named it as `f100M`:
 ```
 dd if=/dev/urandom of=f100M bs=1048576 count=100
 ```
+m
